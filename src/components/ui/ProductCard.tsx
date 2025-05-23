@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           
           <div className="flex gap-2">
             <Button size="sm" variant="outline" asChild>
-              <Link to={`/products/${product.slug}`}>Details</Link>
+              <Link to={`/product/${product.slug}`}>Details</Link>
             </Button>
             <Button size="sm">
               <ShoppingCart className="w-4 h-4 mr-1" />
