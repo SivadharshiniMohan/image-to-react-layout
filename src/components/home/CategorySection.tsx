@@ -7,16 +7,13 @@ import { Button } from '@/components/ui/button';
 
 const CategorySection = () => {
   return (
-    <section className="py-16">
+    <section className="py-8">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Product Categories</h2>
-          <Button variant="outline" asChild>
-            <Link to="/products">Browse All</Link>
-          </Button>
+        <div className="section-header mb-6">
+          <h2>Product Categories</h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map(category => (
             <CategoryCard key={category.id} category={category} />
           ))}

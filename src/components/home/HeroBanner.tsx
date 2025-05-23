@@ -24,7 +24,7 @@ const HeroBanner = () => {
   }, []);
 
   return (
-    <div className="relative h-[500px] md:h-[600px] overflow-hidden">
+    <div className="relative h-[400px] md:h-[500px] overflow-hidden bg-gradient-to-r from-red-600 to-red-800">
       {banners.map((banner, index) => (
         <div
           key={banner.id}
@@ -35,18 +35,18 @@ const HeroBanner = () => {
           <img
             src={banner.image}
             alt={banner.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center">
+          <div className="absolute inset-0 flex items-center">
             <div className="container mx-auto px-4">
-              <div className="max-w-xl text-white">
+              <div className="max-w-xl text-white text-center mx-auto">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">
                   {banner.title}
                 </h1>
                 <p className="text-lg md:text-xl mb-6">
                   {banner.subtitle}
                 </p>
-                <Button asChild size="lg">
+                <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
                   <Link to={banner.link}>Shop Now</Link>
                 </Button>
               </div>
@@ -58,7 +58,7 @@ const HeroBanner = () => {
       <Button
         variant="outline"
         size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80 text-primary"
         onClick={prevSlide}
         aria-label="Previous slide"
       >
@@ -68,7 +68,7 @@ const HeroBanner = () => {
       <Button
         variant="outline"
         size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-80 text-primary"
         onClick={nextSlide}
         aria-label="Next slide"
       >

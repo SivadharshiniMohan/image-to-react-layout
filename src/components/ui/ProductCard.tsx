@@ -12,12 +12,12 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
       <div className="relative">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-contain p-2"
         />
         {product.isFeatured && (
           <Badge className="absolute top-2 left-2 bg-primary">Featured</Badge>
@@ -27,18 +27,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         )}
       </div>
       
-      <div className="p-4">
-        <h3 className="font-semibold text-lg mb-2 line-clamp-1">{product.name}</h3>
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
+      <div className="p-3 flex-grow flex flex-col">
+        <h3 className="font-semibold text-center mb-2 line-clamp-2">{product.name}</h3>
+        <p className="text-gray-600 text-sm mb-3 text-center line-clamp-2">{product.description}</p>
         
-        <div className="flex items-center justify-between">
-          <span className="font-bold text-primary">${product.price.toFixed(2)}</span>
+        <div className="mt-auto flex flex-col items-center justify-center gap-2">
+          <span className="font-bold text-primary text-center block mb-2">${product.price.toFixed(2)}</span>
           
           <div className="flex gap-2">
-            <Button size="sm" variant="outline" asChild>
+            <Button size="sm" variant="outline" asChild className="border-primary text-primary hover:bg-primary hover:text-white">
               <Link to={`/product/${product.slug}`}>Details</Link>
             </Button>
-            <Button size="sm">
+            <Button size="sm" className="bg-primary hover:bg-red-700">
               <ShoppingCart className="w-4 h-4 mr-1" />
               Add
             </Button>
