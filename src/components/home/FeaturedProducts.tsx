@@ -8,6 +8,10 @@ import { Button } from '@/components/ui/button';
 const FeaturedProducts = () => {
   const featuredProducts = products.filter(product => product.isFeatured).slice(0, 8);
 
+  const handleViewAllClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <section className="py-8">
       <div className="container mx-auto px-4">
@@ -23,7 +27,7 @@ const FeaturedProducts = () => {
         
         <div className="text-center mt-8">
           <Button asChild className="bg-primary hover:bg-red-700">
-            <Link to="/products">View All Fireworks</Link>
+            <Link to="/products" onClick={handleViewAllClick}>View All Fireworks</Link>
           </Button>
         </div>
       </div>
