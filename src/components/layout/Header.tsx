@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Search, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from '@/components/ui/navigation-menu';
@@ -8,6 +8,7 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuL
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const navigate = useNavigate();
   
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -21,23 +22,29 @@ const Header = () => {
     (window as any).updateCartCount = updateCartCount;
   }, []);
 
+  const handleNavClick = (path: string) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="bg-primary text-white sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" onClick={() => handleNavClick('/')} className="flex items-center">
             <span className="text-xl font-bold text-white">K2G Crackers</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-white hover:text-gray-200 font-medium">Home</Link>
-            <Link to="/about" className="text-white hover:text-gray-200 font-medium">About</Link>
-            <Link to="/services" className="text-white hover:text-gray-200 font-medium">Services</Link>
-            <Link to="/safety-tips" className="text-white hover:text-gray-200 font-medium">Safety Tips</Link>
-            <Link to="/payment-info" className="text-white hover:text-gray-200 font-medium">Payment Info</Link>
-            <Link to="/contact" className="text-white hover:text-gray-200 font-medium">Contact</Link>
+            <button onClick={() => handleNavClick('/')} className="text-white hover:text-gray-200 font-medium">Home</button>
+            <button onClick={() => handleNavClick('/about')} className="text-white hover:text-gray-200 font-medium">About</button>
+            <button onClick={() => handleNavClick('/services')} className="text-white hover:text-gray-200 font-medium">Services</button>
+            <button onClick={() => handleNavClick('/safety-tips')} className="text-white hover:text-gray-200 font-medium">Safety Tips</button>
+            <button onClick={() => handleNavClick('/payment-info')} className="text-white hover:text-gray-200 font-medium">Payment Info</button>
+            <button onClick={() => handleNavClick('/contact')} className="text-white hover:text-gray-200 font-medium">Contact</button>
           </nav>
 
           {/* Action Icons */}
@@ -64,12 +71,12 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-red-800 pt-2 pb-4 px-4">
           <nav className="flex flex-col space-y-3">
-            <Link to="/" className="text-white hover:text-gray-300 font-medium py-2" onClick={toggleMenu}>Home</Link>
-            <Link to="/about" className="text-white hover:text-gray-300 font-medium py-2" onClick={toggleMenu}>About</Link>
-            <Link to="/services" className="text-white hover:text-gray-300 font-medium py-2" onClick={toggleMenu}>Services</Link>
-            <Link to="/safety-tips" className="text-white hover:text-gray-300 font-medium py-2" onClick={toggleMenu}>Safety Tips</Link>
-            <Link to="/payment-info" className="text-white hover:text-gray-300 font-medium py-2" onClick={toggleMenu}>Payment Info</Link>
-            <Link to="/contact" className="text-white hover:text-gray-300 font-medium py-2" onClick={toggleMenu}>Contact</Link>
+            <button onClick={() => handleNavClick('/')} className="text-white hover:text-gray-300 font-medium py-2 text-left">Home</button>
+            <button onClick={() => handleNavClick('/about')} className="text-white hover:text-gray-300 font-medium py-2 text-left">About</button>
+            <button onClick={() => handleNavClick('/services')} className="text-white hover:text-gray-300 font-medium py-2 text-left">Services</button>
+            <button onClick={() => handleNavClick('/safety-tips')} className="text-white hover:text-gray-300 font-medium py-2 text-left">Safety Tips</button>
+            <button onClick={() => handleNavClick('/payment-info')} className="text-white hover:text-gray-300 font-medium py-2 text-left">Payment Info</button>
+            <button onClick={() => handleNavClick('/contact')} className="text-white hover:text-gray-300 font-medium py-2 text-left">Contact</button>
           </nav>
         </div>
       )}

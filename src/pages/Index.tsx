@@ -3,7 +3,6 @@ import React from 'react';
 import HeroBanner from '@/components/home/HeroBanner';
 import PromoBanner from '@/components/home/PromoBanner';
 import SupportChannels from '@/components/home/SupportChannels';
-import CategorySection from '@/components/home/CategorySection';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import AboutSection from '@/components/home/AboutSection';
 import TestimonialSection from '@/components/home/TestimonialSection';
@@ -22,7 +21,6 @@ const Index = () => {
       <HeroBanner />
       <PromoBanner />
       <SupportChannels />
-      <CategorySection />
       
       {/* Featured Products */}
       <FeaturedProducts />

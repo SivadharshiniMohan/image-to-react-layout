@@ -1,4 +1,3 @@
-
 export interface Category {
   id: number;
   name: string;
@@ -56,7 +55,7 @@ export const products: Product[] = [
     category: 1,
     price: 120,
     offerPrice: 95,
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop",
     isFeatured: true
   },
   {
@@ -67,7 +66,7 @@ export const products: Product[] = [
     category: 1,
     price: 150,
     offerPrice: 120,
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop",
     isFeatured: true
   },
   {
@@ -78,7 +77,7 @@ export const products: Product[] = [
     category: 1,
     price: 180,
     offerPrice: 144,
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop",
     isNew: true
   },
   {
@@ -89,7 +88,7 @@ export const products: Product[] = [
     category: 1,
     price: 210,
     offerPrice: 168,
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop"
   },
   {
     id: 5,
@@ -99,7 +98,7 @@ export const products: Product[] = [
     category: 1,
     price: 240,
     offerPrice: 192,
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop"
   },
   {
     id: 6,
@@ -109,7 +108,7 @@ export const products: Product[] = [
     category: 1,
     price: 280,
     offerPrice: 224,
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop"
   },
 
   // Fancy Sparkles
@@ -121,7 +120,7 @@ export const products: Product[] = [
     category: 2,
     price: 200,
     offerPrice: 160,
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
     isFeatured: true
   },
   {
@@ -132,7 +131,7 @@ export const products: Product[] = [
     category: 2,
     price: 220,
     offerPrice: 176,
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop"
   },
   {
     id: 9,
@@ -142,7 +141,7 @@ export const products: Product[] = [
     category: 2,
     price: 250,
     offerPrice: 200,
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
     isNew: true
   },
   {
@@ -153,7 +152,7 @@ export const products: Product[] = [
     category: 2,
     price: 270,
     offerPrice: 216,
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop"
   },
   {
     id: 11,
@@ -163,7 +162,7 @@ export const products: Product[] = [
     category: 2,
     price: 290,
     offerPrice: 232,
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop"
   },
   {
     id: 12,
@@ -173,7 +172,7 @@ export const products: Product[] = [
     category: 2,
     price: 350,
     offerPrice: 280,
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=300&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
     isFeatured: true
   },
 

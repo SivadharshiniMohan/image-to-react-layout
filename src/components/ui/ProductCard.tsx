@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Product } from '@/data/mockData';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,42 +11,47 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
+  const navigate = useNavigate();
 
   const increaseQuantity = () => setQuantity(prev => prev + 1);
-  const decreaseQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
+  const decreaseQuantity = () => setQuantity(prev => prev > 0 ? prev - 1 : 0);
 
   const addToCart = () => {
-    // Update cart count in header
-    if ((window as any).updateCartCount) {
-      (window as any).updateCartCount(quantity);
+    if (quantity > 0) {
+      // Update cart count in header
+      if ((window as any).updateCartCount) {
+        (window as any).updateCartCount(quantity);
+      }
+      
+      // Show toast or notification here if needed
+      console.log(`Added ${quantity} ${product.name} to cart`);
     }
-    
-    // Show toast or notification here if needed
-    console.log(`Added ${quantity} ${product.name} to cart`);
+  };
+
+  const handleDetailsClick = () => {
+    window.scrollTo(0, 0);
+    navigate(`/product/${product.slug}`);
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
+    <div className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-[420px]">
       <div className="relative">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-contain p-2"
+          className="w-full h-52 object-contain p-2"
         />
-        {product.isFeatured && (
-          <Badge className="absolute top-2 left-2 bg-primary">Featured</Badge>
-        )}
         {product.isNew && (
           <Badge className="absolute top-2 left-2 bg-green-600">New</Badge>
         )}
       </div>
       
-      <div className="p-3 flex-grow flex flex-col">
-        <h3 className="font-semibold text-center mb-2 line-clamp-2">{product.name}</h3>
-        <p className="text-gray-600 text-sm mb-3 text-center line-clamp-2">{product.description}</p>
+      <div className="p-4 flex-grow flex flex-col">
+        <h3 className="font-semibold text-center mb-2 line-clamp-2 text-sm">{product.name}</h3>
+        <p className="text-gray-600 text-xs mb-3 text-center line-clamp-2">{product.description}</p>
         
-        <div className="mt-auto flex flex-col items-center justify-center gap-2">
+        <div className="mt-auto flex flex-col items-center justify-center gap-3">
           <div className="text-center">
             {product.offerPrice ? (
               <div className="flex flex-col items-center">
@@ -79,11 +84,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </Button>
           </div>
           
-          <div className="flex gap-2">
-            <Button size="sm" variant="outline" asChild className="border-primary text-primary hover:bg-primary hover:text-white">
-              <Link to={`/product/${product.slug}`}>Details</Link>
+          <div className="flex gap-2 w-full">
+            <Button 
+              size="sm" 
+              variant="outline" 
+              className="border-primary text-primary hover:bg-primary hover:text-white flex-1"
+              onClick={handleDetailsClick}
+            >
+              Details
             </Button>
-            <Button size="sm" className="bg-primary hover:bg-red-700" onClick={addToCart}>
+            <Button 
+              size="sm" 
+              className="bg-primary hover:bg-red-700 flex-1" 
+              onClick={addToCart}
+              disabled={quantity === 0}
+            >
               <ShoppingCart className="w-4 h-4 mr-1" />
               Add
             </Button>
