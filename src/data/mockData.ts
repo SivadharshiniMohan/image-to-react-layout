@@ -331,3 +331,27 @@ export const banners = [
     link: "/contact"
   }
 ];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: "Rajesh Kumar",
+    role: "Festival Organizer",
+    content: "K2G Crackers has been our go-to supplier for 5 years. Their quality is unmatched and delivery is always on time for our Diwali celebrations.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    id: 2,
+    name: "Priya Sharma",
+    role: "Event Planner",
+    content: "The variety and quality of their fancy crackers made our wedding celebration truly magical. Highly recommend K2G Crackers!",
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    id: 3,
+    name: "Arun Patel",
+    role: "Wholesale Dealer",
+    content: "Excellent service and genuine Sivakasi products. Their bulk pricing and timely delivery helps us serve our customers better.",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+  }
+];
