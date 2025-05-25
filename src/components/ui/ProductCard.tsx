@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '@/data/mockData';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +11,21 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => setQuantity(prev => prev + 1);
+  const decreaseQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
+
+  const addToCart = () => {
+    // Update cart count in header
+    if ((window as any).updateCartCount) {
+      (window as any).updateCartCount(quantity);
+    }
+    
+    // Show toast or notification here if needed
+    console.log(`Added ${quantity} ${product.name} to cart`);
+  };
+
   return (
     <div className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
       <div className="relative">
@@ -32,13 +47,43 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <p className="text-gray-600 text-sm mb-3 text-center line-clamp-2">{product.description}</p>
         
         <div className="mt-auto flex flex-col items-center justify-center gap-2">
-          <span className="font-bold text-primary text-center block mb-2">${product.price.toFixed(2)}</span>
+          <div className="text-center">
+            {product.offerPrice ? (
+              <div className="flex flex-col items-center">
+                <span className="text-gray-500 line-through text-sm">₹{product.price.toFixed(2)}</span>
+                <span className="font-bold text-primary text-lg">₹{product.offerPrice.toFixed(2)}</span>
+              </div>
+            ) : (
+              <span className="font-bold text-primary text-lg">₹{product.price.toFixed(2)}</span>
+            )}
+          </div>
+
+          {/* Quantity Controls */}
+          <div className="flex items-center gap-2 mb-2">
+            <Button 
+              size="sm" 
+              variant="outline" 
+              onClick={decreaseQuantity}
+              className="w-8 h-8 p-0"
+            >
+              -
+            </Button>
+            <span className="font-semibold min-w-[2rem] text-center">{quantity}</span>
+            <Button 
+              size="sm" 
+              variant="outline" 
+              onClick={increaseQuantity}
+              className="w-8 h-8 p-0"
+            >
+              +
+            </Button>
+          </div>
           
           <div className="flex gap-2">
             <Button size="sm" variant="outline" asChild className="border-primary text-primary hover:bg-primary hover:text-white">
               <Link to={`/product/${product.slug}`}>Details</Link>
             </Button>
-            <Button size="sm" className="bg-primary hover:bg-red-700">
+            <Button size="sm" className="bg-primary hover:bg-red-700" onClick={addToCart}>
               <ShoppingCart className="w-4 h-4 mr-1" />
               Add
             </Button>

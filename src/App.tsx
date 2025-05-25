@@ -24,6 +24,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
+            <Route path="/services" element={<div className="container mx-auto px-4 py-16"><h1 className="text-3xl font-bold">Services</h1><p>Our comprehensive fireworks services page coming soon.</p></div>} />
+            <Route path="/safety-tips" element={<div className="container mx-auto px-4 py-16"><h1 className="text-3xl font-bold">Safety Tips</h1><p>Important safety guidelines for fireworks usage coming soon.</p></div>} />
+            <Route path="/payment-info" element={<div className="container mx-auto px-4 py-16"><h1 className="text-3xl font-bold">Payment Information</h1><p>Payment methods and policies coming soon.</p></div>} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:categorySlug" element={<Products />} />
             <Route path="/product/:slug" element={<ProductDetail />} />

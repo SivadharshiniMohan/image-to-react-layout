@@ -1,11 +1,14 @@
 
 import React from 'react';
 import HeroBanner from '@/components/home/HeroBanner';
+import PromoBanner from '@/components/home/PromoBanner';
+import SupportChannels from '@/components/home/SupportChannels';
 import CategorySection from '@/components/home/CategorySection';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import AboutSection from '@/components/home/AboutSection';
 import TestimonialSection from '@/components/home/TestimonialSection';
 import NewsletterSection from '@/components/home/NewsletterSection';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import { products } from '@/data/mockData';
 import ProductCard from '@/components/ui/ProductCard';
 
@@ -17,6 +20,8 @@ const Index = () => {
   return (
     <div>
       <HeroBanner />
+      <PromoBanner />
+      <SupportChannels />
       <CategorySection />
       
       {/* Featured Products */}
@@ -53,6 +58,9 @@ const Index = () => {
       <AboutSection />
       <TestimonialSection />
       <NewsletterSection />
+      
+      {/* WhatsApp Floating Button */}
+      <WhatsAppButton />
     </div>
   );
 };
