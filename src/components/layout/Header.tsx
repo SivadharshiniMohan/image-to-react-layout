@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X } from 'lucide-react';
+import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from '@/components/ui/navigation-menu';
 
@@ -49,9 +49,6 @@ const Header = () => {
 
           {/* Action Icons */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" aria-label="Search" className="text-white hover:bg-red-800">
-              <Search className="h-5 w-5" />
-            </Button>
             <Button variant="ghost" size="icon" aria-label="Cart" className="text-white hover:bg-red-800 relative">
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (

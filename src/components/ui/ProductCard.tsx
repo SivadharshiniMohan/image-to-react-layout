@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Product } from '@/data/mockData';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -14,10 +14,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
 
-  const increaseQuantity = () => setQuantity(prev => prev + 1);
-  const decreaseQuantity = () => setQuantity(prev => prev > 0 ? prev - 1 : 0);
+  const increaseQuantity = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setQuantity(prev => prev + 1);
+  };
 
-  const addToCart = () => {
+  const decreaseQuantity = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setQuantity(prev => prev > 0 ? prev - 1 : 0);
+  };
+
+  const addToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (quantity > 0) {
       // Update cart count in header
       if ((window as any).updateCartCount) {
@@ -26,16 +34,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       
       // Show toast or notification here if needed
       console.log(`Added ${quantity} ${product.name} to cart`);
+      
+      // Reset quantity after adding to cart
+      setQuantity(0);
     }
   };
 
-  const handleDetailsClick = () => {
-    window.scrollTo(0, 0);
+  const handleCardClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate(`/product/${product.slug}`);
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-[420px]">
+    <div 
+      className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-[420px] cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="relative">
         <img
           src={product.image}
@@ -84,23 +98,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </Button>
           </div>
           
-          <div className="flex gap-2 w-full">
+          <div className="w-full">
             <Button 
               size="sm" 
-              variant="outline" 
-              className="border-primary text-primary hover:bg-primary hover:text-white flex-1"
-              onClick={handleDetailsClick}
-            >
-              Details
-            </Button>
-            <Button 
-              size="sm" 
-              className="bg-primary hover:bg-red-700 flex-1" 
+              className="bg-primary hover:bg-red-700 w-full" 
               onClick={addToCart}
               disabled={quantity === 0}
             >
               <ShoppingCart className="w-4 h-4 mr-1" />
-              Add
+              Add to Cart
             </Button>
           </div>
         </div>
