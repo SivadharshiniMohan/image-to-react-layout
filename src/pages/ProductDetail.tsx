@@ -14,10 +14,10 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-3xl font-bold mb-4">Product Not Found</h1>
-        <p className="mb-6">The product you're looking for doesn't exist or has been removed.</p>
+        <h1 className="text-3xl font-bold mb-4">Firework Not Found</h1>
+        <p className="mb-6">The firework you're looking for doesn't exist or has been removed from our collection.</p>
         <Button asChild>
-          <Link to="/products">Browse Products</Link>
+          <Link to="/products">Browse Fireworks</Link>
         </Button>
       </div>
     );
@@ -42,7 +42,7 @@ const ProductDetail = () => {
         <div className="mb-6 text-sm">
           <Link to="/" className="text-gray-500 hover:text-primary">Home</Link>
           <span className="mx-2">/</span>
-          <Link to="/products" className="text-gray-500 hover:text-primary">Products</Link>
+          <Link to="/products" className="text-gray-500 hover:text-primary">Fireworks</Link>
           {category && (
             <>
               <span className="mx-2">/</span>
@@ -107,7 +107,7 @@ const ProductDetail = () => {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div>
-            <h2 className="text-2xl font-bold mb-6">You May Also Like</h2>
+            <h2 className="text-2xl font-bold mb-6">Similar Fireworks</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map(product => (
                 <ProductCard key={product.id} product={product} />

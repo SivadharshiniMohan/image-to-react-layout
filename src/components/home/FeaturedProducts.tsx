@@ -12,7 +12,7 @@ const FeaturedProducts = () => {
     <section className="py-8">
       <div className="container mx-auto px-4">
         <div className="section-header mb-6">
-          <h2>Featured Products</h2>
+          <h2>Featured Fireworks</h2>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -23,7 +23,7 @@ const FeaturedProducts = () => {
         
         <div className="text-center mt-8">
           <Button asChild className="bg-primary hover:bg-red-700">
-            <Link to="/products">View All Products</Link>
+            <Link to="/products">View All Fireworks</Link>
           </Button>
         </div>
       </div>

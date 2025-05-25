@@ -38,18 +38,18 @@ const Products = () => {
   return (
     <div className="py-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">Our Products</h1>
+        <h1 className="text-3xl font-bold mb-8">Our Fireworks Collection</h1>
         
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar filters */}
           <div className="lg:w-1/4">
             <div className="bg-white p-6 rounded-lg shadow mb-6">
-              <h3 className="font-semibold text-lg mb-4">Search Products</h3>
+              <h3 className="font-semibold text-lg mb-4">Search Fireworks</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                 <Input
                   type="text"
-                  placeholder="Search products..."
+                  placeholder="Search fireworks..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -86,7 +86,7 @@ const Products = () => {
               </div>
             ) : (
               <div className="text-center py-8">
-                <p className="text-lg text-gray-500">No products found matching your criteria.</p>
+                <p className="text-lg text-gray-500">No fireworks found matching your criteria.</p>
               </div>
             )}
           </div>
