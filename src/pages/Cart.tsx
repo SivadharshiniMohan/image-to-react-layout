@@ -139,7 +139,7 @@ const Cart = () => {
                 onClick={handlePrintOrder}
                 className="bg-primary hover:bg-red-700 px-6 py-2 mb-6"
               >
-                <Print className="w-4 h-4 mr-2" />
+                <Printer className="w-4 h-4 mr-2" />
                 Print Order
               </Button>
             </div>
