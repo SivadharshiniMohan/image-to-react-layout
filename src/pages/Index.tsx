@@ -1,3 +1,4 @@
+
 import React from 'react';
 import HeroBanner from '@/components/home/HeroBanner';
 import PromoBanner from '@/components/home/PromoBanner';
@@ -7,7 +8,6 @@ import AboutSection from '@/components/home/AboutSection';
 import TestimonialSection from '@/components/home/TestimonialSection';
 import NewsletterSection from '@/components/home/NewsletterSection';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
-import PriceListButton from '@/components/ui/PriceListButton';
 import { products } from '@/data/mockData';
 import ProductCard from '@/components/ui/ProductCard';
 
@@ -59,9 +59,6 @@ const Index = () => {
       
       {/* WhatsApp Floating Button */}
       <WhatsAppButton />
-      
-      {/* Price List Button */}
-      <PriceListButton />
     </div>
   );
 };
