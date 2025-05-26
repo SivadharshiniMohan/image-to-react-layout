@@ -19,7 +19,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
           alt={category.name}
           className="w-full h-full object-contain p-2"
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-primary py-1">
+        <div className="absolute bottom-0 left-0 right-0 bg-primary py-2">
           <h3 className="text-white text-sm font-bold text-center px-2">
             {category.name}
           </h3>
