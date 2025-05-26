@@ -1,45 +1,67 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { products, categories, Product } from '@/data/mockData';
+import { p1 } from '@/data/mockData';
 import ProductCard from '@/components/ui/ProductCard';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Search } from 'lucide-react';
 
+// Type definition
+type Product = {
+  name: string;
+  actualPrice: number;
+  discountPrice: number;
+  image: string;
+  categoryName?: string;
+};
+
+// Generate products array with categoryName
+const allProducts: Product[] = Object.entries(p1).flatMap(([category, items]) =>
+  items.map((item) => ({
+    ...item,
+    categoryName: category,
+  }))
+);
+
+// Generate categories from keys
+const categories = Object.keys(p1).map((name, index) => ({
+  id: index + 1,
+  name,
+  slug: name.toLowerCase().replace(/\s+/g, '-'),
+}));
+
 const Products = () => {
   const { categorySlug } = useParams();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<number[]>(
-    categorySlug 
-      ? [categories.find(cat => cat.slug === categorySlug)?.id || 0].filter(id => id !== 0)
+    categorySlug
+      ? [categories.find((cat) => cat.slug === categorySlug)?.id || 0].filter((id) => id !== 0)
       : []
   );
 
-  const filteredProducts: Product[] = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesCategory = selectedCategories.length === 0 || 
-                           selectedCategories.includes(product.category);
-    
+  const selectedCategoryNames = selectedCategories.map(
+    (id) => categories.find((cat) => cat.id === id)?.name
+  );
+
+  const filteredProducts: Product[] = allProducts.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategories.length === 0 || selectedCategoryNames.includes(product.categoryName);
     return matchesSearch && matchesCategory;
   });
 
   const handleCategoryChange = (categoryId: number) => {
-    setSelectedCategories(prev => 
-      prev.includes(categoryId)
-        ? prev.filter(id => id !== categoryId)
-        : [...prev, categoryId]
+    setSelectedCategories((prev) =>
+      prev.includes(categoryId) ? prev.filter((id) => id !== categoryId) : [...prev, categoryId]
     );
   };
 
   return (
     <div className="py-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">Our Fireworks Collection</h1>
-        
+        <h1 className="text-3xl font-bold mb-8 text-center">Our Fireworks Collection</h1>
+
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar filters */}
           <div className="lg:w-1/4">
@@ -56,13 +78,13 @@ const Products = () => {
                 />
               </div>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow">
               <h3 className="font-semibold text-lg mb-4">Filter by Category</h3>
               <div className="space-y-2">
-                {categories.map(category => (
+                {categories.map((category) => (
                   <div key={category.id} className="flex items-center space-x-2">
-                    <Checkbox 
+                    <Checkbox
                       id={`category-${category.id}`}
                       checked={selectedCategories.includes(category.id)}
                       onCheckedChange={() => handleCategoryChange(category.id)}
@@ -75,13 +97,13 @@ const Products = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Product grid */}
           <div className="lg:w-3/4">
             {filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
+                {filteredProducts.map((product, index) => (
+                  <ProductCard key={index} product={product} />
                 ))}
               </div>
             ) : (

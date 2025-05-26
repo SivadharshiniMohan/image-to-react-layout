@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
 
 interface ProductCardProps {
-  product: Product;
+  product: any;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -65,15 +65,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }
   };
 
-  const handleCardClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    navigate(`/product/${product.slug}`);
-  };
-
+ 
   return (
     <div 
       className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-[420px] cursor-pointer"
-      onClick={handleCardClick}
     >
       <div className="relative">
         <img
@@ -88,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       
       <div className="p-4 flex-grow flex flex-col">
         <h3 className="font-semibold text-center mb-2 line-clamp-2 text-sm">{product.name}</h3>
-        <p className="text-gray-600 text-xs mb-3 text-center line-clamp-2">{product.description}</p>
+        {/* <p className="text-gray-600 text-xs mb-3 text-center line-clamp-2">{product.description}</p> */}
         
         <div className="mt-auto flex flex-col items-center justify-center gap-3">
           <div className="text-center">

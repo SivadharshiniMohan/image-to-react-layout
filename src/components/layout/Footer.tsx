@@ -12,7 +12,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">K2G Crackers</h3>
             <p className="text-white mb-4">
-              Providing premium quality crackers and biscuits since 1995. Our commitment is to use the finest ingredients for the perfect taste.
+              Your trusted partner for premium quality fireworks and crackers. Making celebrations brighter since 2023.
             </p>
             <div className="flex space-x-4">
               <a href="#" aria-label="Facebook" className="text-white hover:text-gray-300">
@@ -28,7 +28,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>
@@ -36,10 +36,10 @@ const Footer = () => {
               <li><Link to="/products" className="text-white hover:text-gray-300">Products</Link></li>
               <li><Link to="/contact" className="text-white hover:text-gray-300">Contact Us</Link></li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Products */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-bold mb-4">Products</h3>
             <ul className="space-y-2">
               <li><Link to="/products/crackers" className="text-white hover:text-gray-300">Crackers</Link></li>
@@ -47,7 +47,7 @@ const Footer = () => {
               <li><Link to="/products/cookies" className="text-white hover:text-gray-300">Cookies</Link></li>
               <li><Link to="/products/wafers" className="text-white hover:text-gray-300">Wafers</Link></li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact */}
           <div>
@@ -55,7 +55,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-2 text-white flex-shrink-0 mt-1" />
-                <span>123 Cracker Street, Biscuit City, 12345</span>
+                <span>123 Cracker Street, City, 12345</span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-2 text-white flex-shrink-0" />

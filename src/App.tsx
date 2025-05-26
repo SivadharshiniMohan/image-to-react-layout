@@ -30,7 +30,6 @@ const App = () => (
             <Route path="/payment-info" element={<div className="container mx-auto px-4 py-16"><h1 className="text-3xl font-bold">Payment Information</h1><p>Payment methods and policies coming soon.</p></div>} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:categorySlug" element={<Products />} />
-            <Route path="/product/:slug" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
