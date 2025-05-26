@@ -3,55 +3,37 @@ import React from 'react';
 import HeroBanner from '@/components/home/HeroBanner';
 import PromoBanner from '@/components/home/PromoBanner';
 import SupportChannels from '@/components/home/SupportChannels';
-import FeaturedProducts from '@/components/home/FeaturedProducts';
 import AboutSection from '@/components/home/AboutSection';
 import TestimonialSection from '@/components/home/TestimonialSection';
 import NewsletterSection from '@/components/home/NewsletterSection';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
-import { products } from '@/data/mockData';
-import ProductCard from '@/components/ui/ProductCard';
+import { newMockData } from '@/data/mockData';
+import NewProductCard from '@/components/ui/NewProductCard';
 
 const Index = () => {
-  // Get different product groups for various sections
-  const newProducts = products.filter(product => product.isNew).slice(0, 6);
-  const popularProducts = products.slice(0, 6);
-  
   return (
     <div>
       <HeroBanner />
       <PromoBanner />
       <SupportChannels />
       
-      {/* Featured Products */}
-      <FeaturedProducts />
-      
-      {/* New Products */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <div className="section-header mb-6">
-            <h2>New Arrivals</h2>
+      {/* Display products by category */}
+      {Object.entries(newMockData).map(([category, products]) => (
+        <section key={category} className="py-8">
+          <div className="container mx-auto px-4">
+            {/* Category header with red background and white text */}
+            <div className="bg-primary py-3 mb-6 rounded">
+              <h2 className="text-white text-center text-xl font-bold">{category}</h2>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {products.map((product, index) => (
+                <NewProductCard key={`${category}-${index}`} product={product} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {newProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Popular Products */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <div className="section-header mb-6">
-            <h2>Popular Fireworks</h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {popularProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      ))}
       
       <AboutSection />
       <TestimonialSection />
