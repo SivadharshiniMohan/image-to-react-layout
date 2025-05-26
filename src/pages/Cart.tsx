@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -41,7 +42,6 @@ const Cart = () => {
   const [showOrderSuccess, setShowOrderSuccess] = useState(false);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails | null>(null);
   const [selectedCountryCode, setSelectedCountryCode] = useState('+91');
-  const [totalPrice, setTotalPrice] = useState(0);
   
   const form = useForm<CustomerDetails>({
     defaultValues: {
@@ -68,6 +68,7 @@ const Cart = () => {
 
   const updateCartCount = () => {
     const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    // Update the header cart count
     const event = new CustomEvent('cartUpdate', { detail: totalCount });
     window.dispatchEvent(event);
   };
@@ -101,8 +102,6 @@ const Cart = () => {
   };
 
   const onSubmit = (data: CustomerDetails) => {
-    const total = getTotalPrice();
-    setTotalPrice(total);
     setCustomerDetails(data);
     setShowOrderPreview(true);
   };
@@ -176,7 +175,7 @@ const Cart = () => {
             ))}
             <div className="mt-4 pt-4 border-t">
               <div className="flex justify-between items-center text-xl font-bold">
-                <span>Total: ₹{totalPrice.toFixed(2)}</span>
+                <span>Total: ₹{getTotalPrice().toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -259,23 +258,23 @@ const Cart = () => {
         </div>
       ) : (
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Order Summary - Mobile optimized */}
-            <div className="w-full lg:w-1/2 bg-white rounded-lg shadow-md p-4 lg:p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Order Summary */}
+            <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
               
               {cartItems.map(item => (
-                <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 py-4 border-b">
-                  <img src={item.image} alt={item.name} className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded mx-auto sm:mx-0" />
+                <div key={item.id} className="flex items-center gap-4 py-4 border-b">
+                  <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded" />
                   
-                  <div className="flex-grow text-center sm:text-left">
-                    <h3 className="font-medium text-sm sm:text-base">{item.name}</h3>
+                  <div className="flex-grow">
+                    <h3 className="font-medium">{item.name}</h3>
                     <p className="text-primary font-semibold">
                       ₹{(item.offerPrice || item.price).toFixed(2)}
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-2 mx-auto sm:mx-0">
+                  <div className="flex items-center gap-2">
                     <Button 
                       size="sm" 
                       variant="outline" 
@@ -312,8 +311,8 @@ const Cart = () => {
               </div>
             </div>
 
-            {/* Customer Details Form - Mobile optimized */}
-            <div className="w-full lg:w-1/2 bg-white rounded-lg shadow-md p-4 lg:p-6">
+            {/* Customer Details Form */}
+            <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-semibold mb-4">Customer Details</h2>
               
               <Form {...form}>
