@@ -1,69 +1,61 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
     <footer className="bg-primary text-white pt-8 pb-4">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
+          {/* Company Info with Logo */}
           <div>
-            <h3 className="text-lg font-bold mb-4">K2G Crackers</h3>
-            <p className="text-white mb-4">
-              Providing premium quality crackers and biscuits since 1995. Our commitment is to use the finest ingredients for the perfect taste.
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook" className="text-white hover:text-gray-300">
-                <Facebook size={20} />
-              </a>
-              <a href="#" aria-label="Twitter" className="text-white hover:text-gray-300">
-                <Twitter size={20} />
-              </a>
-              <a href="#" aria-label="Instagram" className="text-white hover:text-gray-300">
-                <Instagram size={20} />
-              </a>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/26408662-96a6-4028-a301-0458d1ec8373.png" 
+                alt="K2G Crackers Logo" 
+                className="h-16 w-auto mr-4"
+              />
             </div>
+            <p className="text-white mb-4">
+              Your trusted partner for premium quality fireworks and crackers. Making celebrations brighter since 2023.
+            </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4 text-yellow-400">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>
-              <li><Link to="/about" className="text-white hover:text-gray-300">About Us</Link></li>
-              <li><Link to="/products" className="text-white hover:text-gray-300">Products</Link></li>
-              <li><Link to="/contact" className="text-white hover:text-gray-300">Contact Us</Link></li>
+              <li><Link to="/" className="text-white hover:text-yellow-400">About Us</Link></li>
+              <li><Link to="/products" className="text-white hover:text-yellow-400">Products</Link></li>
+              <li><Link to="/contact" className="text-white hover:text-yellow-400">Gallery</Link></li>
+              <li><Link to="/contact" className="text-white hover:text-yellow-400">Services</Link></li>
+              <li><Link to="/contact" className="text-white hover:text-yellow-400">Contact</Link></li>
+              <li><Link to="/contact" className="text-white hover:text-yellow-400">Support</Link></li>
             </ul>
           </div>
 
-          {/* Products */}
+          {/* Products - Empty for now as per image */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Products</h3>
-            <ul className="space-y-2">
-              <li><Link to="/products/crackers" className="text-white hover:text-gray-300">Crackers</Link></li>
-              <li><Link to="/products/biscuits" className="text-white hover:text-gray-300">Biscuits</Link></li>
-              <li><Link to="/products/cookies" className="text-white hover:text-gray-300">Cookies</Link></li>
-              <li><Link to="/products/wafers" className="text-white hover:text-gray-300">Wafers</Link></li>
-            </ul>
+            <h3 className="text-lg font-bold mb-4 text-yellow-400">Products</h3>
+            {/* Empty section as shown in the image */}
           </div>
 
-          {/* Contact */}
+          {/* Get in Touch */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+            <h3 className="text-lg font-bold mb-4 text-yellow-400">Get in Touch</h3>
             <ul className="space-y-3">
+              <li className="flex items-center">
+                <Phone size={20} className="mr-2 text-yellow-400 flex-shrink-0" />
+                <span>+91 75502 29158, +91 63830 78082</span>
+              </li>
+              <li className="flex items-center">
+                <Mail size={20} className="mr-2 text-yellow-400 flex-shrink-0" />
+                <span>k2gcrackers@gmail.com</span>
+              </li>
               <li className="flex items-start">
-                <MapPin size={20} className="mr-2 text-white flex-shrink-0 mt-1" />
-                <span>123 Cracker Street, Biscuit City, 12345</span>
-              </li>
-              <li className="flex items-center">
-                <Phone size={20} className="mr-2 text-white flex-shrink-0" />
-                <span>(123) 456-7890</span>
-              </li>
-              <li className="flex items-center">
-                <Mail size={20} className="mr-2 text-white flex-shrink-0" />
-                <span>info@k2gcrackers.com</span>
+                <MapPin size={20} className="mr-2 text-yellow-400 flex-shrink-0 mt-1" />
+                <span>Sivakasi, Tamil Nadu</span>
               </li>
             </ul>
           </div>
