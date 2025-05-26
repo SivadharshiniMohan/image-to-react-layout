@@ -16,27 +16,52 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const increaseQuantity = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setQuantity(prev => prev + 1);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    
+    // Automatically add to cart
+    if ((window as any).updateCartCount) {
+      (window as any).updateCartCount(1);
+    }
+    
+    // Store in localStorage for cart page
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const existingItem = cartItems.find((item: any) => item.id === product.id);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cartItems.push({ ...product, quantity: 1 });
+    }
+    
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    console.log(`Added 1 ${product.name} to cart`);
   };
 
   const decreaseQuantity = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setQuantity(prev => prev > 0 ? prev - 1 : 0);
-  };
-
-  const addToCart = (e: React.MouseEvent) => {
-    e.stopPropagation();
     if (quantity > 0) {
-      // Update cart count in header
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      
+      // Update cart count
       if ((window as any).updateCartCount) {
-        (window as any).updateCartCount(quantity);
+        (window as any).updateCartCount(-1);
       }
       
-      // Show toast or notification here if needed
-      console.log(`Added ${quantity} ${product.name} to cart`);
+      // Update localStorage
+      const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+      const existingItem = cartItems.find((item: any) => item.id === product.id);
       
-      // Reset quantity after adding to cart
-      setQuantity(0);
+      if (existingItem) {
+        existingItem.quantity -= 1;
+        if (existingItem.quantity <= 0) {
+          const index = cartItems.findIndex((item: any) => item.id === product.id);
+          cartItems.splice(index, 1);
+        }
+      }
+      
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
   };
 
@@ -95,18 +120,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               className="w-8 h-8 p-0"
             >
               +
-            </Button>
-          </div>
-          
-          <div className="w-full">
-            <Button 
-              size="sm" 
-              className="bg-primary hover:bg-red-700 w-full" 
-              onClick={addToCart}
-              disabled={quantity === 0}
-            >
-              <ShoppingCart className="w-4 h-4 mr-1" />
-              Add to Cart
             </Button>
           </div>
         </div>

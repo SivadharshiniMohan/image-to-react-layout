@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,14 +18,24 @@ const Header = () => {
   };
 
   // Make updateCartCount available globally
-  React.useEffect(() => {
+  useEffect(() => {
     (window as any).updateCartCount = updateCartCount;
+    
+    // Initialize cart count from localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const totalCount = cartItems.reduce((sum: number, item: any) => sum + item.quantity, 0);
+    setCartCount(totalCount);
   }, []);
 
   const handleNavClick = (path: string) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate(path);
     setIsMenuOpen(false);
+  };
+
+  const handleCartClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate('/cart');
   };
 
   return (
@@ -49,7 +59,7 @@ const Header = () => {
 
           {/* Action Icons */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" aria-label="Cart" className="text-white hover:bg-red-800 relative">
+            <Button variant="ghost" size="icon" aria-label="Cart" className="text-white hover:bg-red-800 relative" onClick={handleCartClick}>
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-white text-primary text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
