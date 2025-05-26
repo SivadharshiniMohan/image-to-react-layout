@@ -25,6 +25,17 @@ const Header = () => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
     const totalCount = cartItems.reduce((sum: number, item: any) => sum + item.quantity, 0);
     setCartCount(totalCount);
+
+    // Listen for cart updates from Cart page
+    const handleCartUpdate = (event: CustomEvent) => {
+      setCartCount(event.detail);
+    };
+
+    window.addEventListener('cartUpdate', handleCartUpdate as EventListener);
+
+    return () => {
+      window.removeEventListener('cartUpdate', handleCartUpdate as EventListener);
+    };
   }, []);
 
   const handleNavClick = (path: string) => {
