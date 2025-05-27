@@ -1,3 +1,4 @@
+
 export interface Category {
   id: number;
   name: string;
@@ -15,6 +16,15 @@ export interface Product {
   image: string;
   isFeatured?: boolean;
   isNew?: boolean;
+  description?: string;
+}
+
+export interface P1Product {
+  id: number;
+  name: string;
+  price: number;
+  offerPrice: number;
+  image: string;
 }
 
 export const categories: Category[] = [
@@ -44,29 +54,31 @@ export const categories: Category[] = [
   }
 ];
 
-
-
-export const p1:any= {
+export const p1: Record<string, P1Product[]> = {
   "Combo Packages": [
     {
+      id: 1,
       "name": "2500 Combo",
       "price": 2500,
       "offerPrice": 2500,
       "image": "https://k2gcrackers.com/images/combos/2500_combo.jpg"
     },
     {
+      id: 2,
       "name": "5000 Combo",
       "price": 5000,
       "offerPrice": 5000,
       "image": "https://k2gcrackers.com/images/combos/5000_combo.jpg"
     },
     {
+      id: 3,
       "name": "7000 Combo",
       "price": 7000,
       "offerPrice": 7000,
       "image": "https://k2gcrackers.com/images/combos/7000_combo.jpg"
     },
     {
+      id: 4,
       "name": "10k mega combo pack",
       "price": 10000,
       "offerPrice": 10000,
@@ -75,36 +87,42 @@ export const p1:any= {
   ],
   "Ground Chakkar": [
     {
+      id: 5,
       "name": "Ground chakkar big",
       "price": 31,
       "offerPrice": 155,
       "image": "https://k2gcrackers.com/images/ground_chakkar/big.jpg"
     },
     {
+      id: 6,
       "name": "Ground chakkar ashoka",
       "price": 46,
       "offerPrice": 230,
       "image": "https://k2gcrackers.com/images/ground_chakkar/ashoka.jpg"
     },
     {
+      id: 7,
       "name": "Ground chakkar SPL",
       "price": 56,
       "offerPrice": 280,
       "image": "https://k2gcrackers.com/images/ground_chakkar/spl.jpg"
     },
     {
+      id: 8,
       "name": "Ground chakkar deluxe",
       "price": 100,
       "offerPrice": 500,
       "image": "https://k2gcrackers.com/images/ground_chakkar/deluxe.jpg"
     },
     {
+      id: 9,
       "name": "Moto wheel",
       "price": 160,
       "offerPrice": 800,
       "image": "https://k2gcrackers.com/images/ground_chakkar/moto_wheel.jpg"
     },
     {
+      id: 10,
       "name": "Whistling wheel",
       "price": 100,
       "offerPrice": 500,
@@ -113,36 +131,42 @@ export const p1:any= {
   ],
   "New Arrivals": [
     {
+      id: 11,
       "name": "Lucky money",
       "price": 160,
       "offerPrice": 800,
       "image": "https://k2gcrackers.com/images/new_arrivals/lucky_money.jpg"
     },
     {
+      id: 12,
       "name": "Bat and ball",
       "price": 200,
       "offerPrice": 1000,
       "image": "https://k2gcrackers.com/images/new_arrivals/bat_ball.jpg"
     },
     {
+      id: 13,
       "name": "Android 4 in 1",
       "price": 200,
       "offerPrice": 1000,
       "image": "https://k2gcrackers.com/images/new_arrivals/android_4in1.jpg"
     },
     {
+      id: 14,
       "name": "Old is gold (Olai Vedi)",
       "price": 160,
       "offerPrice": 800,
       "image": "https://k2gcrackers.com/images/new_arrivals/old_is_gold.jpg"
     },
     {
+      id: 15,
       "name": "Volcano",
       "price": 220,
       "offerPrice": 1100,
       "image": "https://k2gcrackers.com/images/new_arrivals/volcano.jpg"
     },
     {
+      id: 16,
       "name": "AK47",
       "price": 200,
       "offerPrice": 1000,
@@ -151,36 +175,42 @@ export const p1:any= {
   ],
   "Sparklers": [
     {
+      id: 17,
       "name": "10cm Colour",
       "price": 15,
       "offerPrice": 75,
       "image": "https://k2gcrackers.com/images/sparklers/10cm_colour.jpg"
     },
     {
+      id: 18,
       "name": "15cm Green",
       "price": 40,
       "offerPrice": 200,
       "image": "https://k2gcrackers.com/images/sparklers/15cm_green.jpg"
     },
     {
+      id: 19,
       "name": "15cm Red",
       "price": 40,
       "offerPrice": 200,
       "image": "https://k2gcrackers.com/images/sparklers/15cm_red.jpg"
     },
     {
+      id: 20,
       "name": "30cm Red",
       "price": 40,
       "offerPrice": 200,
       "image": "https://k2gcrackers.com/images/sparklers/30cm_red.jpg"
     },
     {
+      id: 21,
       "name": "30cm Green",
       "price": 40,
       "offerPrice": 200,
       "image": "https://k2gcrackers.com/images/sparklers/30cm_green.jpg"
     },
     {
+      id: 22,
       "name": "10cm 4 in 1",
       "price": 20,
       "offerPrice": 100,
@@ -189,30 +219,35 @@ export const p1:any= {
   ],
   "Fancy Sparklers": [
     {
+      id: 23,
       "name": "15cm pink",
       "price": 50,
       "offerPrice": 250,
       "image": "https://k2gcrackers.com/images/fancy_sparklers/15cm_pink.jpg"
     },
     {
+      id: 24,
       "name": "15cm silver drop",
       "price": 46,
       "offerPrice": 230,
       "image": "https://k2gcrackers.com/images/fancy_sparklers/silver_drop.jpg"
     },
     {
+      id: 25,
       "name": "Lovely heart",
       "price": 125,
       "offerPrice": 625,
       "image": "https://k2gcrackers.com/images/fancy_sparklers/lovely_heart.jpg"
     },
     {
+      id: 26,
       "name": "15 CM violet",
       "price": 50,
       "offerPrice": 250,
       "image": "https://k2gcrackers.com/images/fancy_sparklers/15cm_violet.jpg"
     },
     {
+      id: 27,
       "name": "15 CM blue",
       "price": 50,
       "offerPrice": 250,

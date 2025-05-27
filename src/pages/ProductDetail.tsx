@@ -1,16 +1,17 @@
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
 import ProductCard from '@/components/ui/ProductCard';
 import { toast } from '@/components/ui/use-toast';
-import { p1 } from '@/data/mockData';
+import { p1, P1Product } from '@/data/mockData';
 
 const ProductDetail = () => {
   const { name } = useParams(); // expecting product name as param
 
   // Find product and category by exact name match
-  let product = null;
+  let product: P1Product | null = null;
   let categoryName = '';
 
   for (const [category, items] of Object.entries(p1)) {
@@ -82,7 +83,7 @@ const ProductDetail = () => {
             <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
 
             <p className="text-2xl font-bold text-primary mb-6">
-              ${product.discountPrice.toFixed(2)}
+              ₹{product.offerPrice.toFixed(2)}
             </p>
 
             <div className="mb-6">
@@ -112,7 +113,7 @@ const ProductDetail = () => {
             <h2 className="text-2xl font-bold mb-6">Similar Fireworks</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map(product => (
-                <ProductCard key={product.name} product={product} />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           </div>

@@ -50,7 +50,7 @@ const Index = () => {
       </section> */}
        {
         Object.entries(p1).map(([category, items]) => {
-          return  <section className="py-8">
+          return  <section key={category} className="py-8">
         <div className="container mx-auto px-4">
           <div className="section-header mb-6">
              <h2 className="bg-red-600 text-white text-center text-xl font-semibold py-2 rounded">

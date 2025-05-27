@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { p1 } from '@/data/mockData';
+import { p1, P1Product } from '@/data/mockData';
 import ProductCard from '@/components/ui/ProductCard';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -8,16 +9,12 @@ import { Label } from '@/components/ui/label';
 import { Search } from 'lucide-react';
 
 // Type definition
-type Product = {
-  name: string;
-  actualPrice: number;
-  discountPrice: number;
-  image: string;
-  categoryName?: string;
+type ProductWithCategory = P1Product & {
+  categoryName: string;
 };
 
 // Generate products array with categoryName
-const allProducts: Product[] = Object.entries(p1).flatMap(([category, items]) =>
+const allProducts: ProductWithCategory[] = Object.entries(p1).flatMap(([category, items]) =>
   items.map((item) => ({
     ...item,
     categoryName: category,
@@ -44,7 +41,7 @@ const Products = () => {
     (id) => categories.find((cat) => cat.id === id)?.name
   );
 
-  const filteredProducts: Product[] = allProducts.filter((product) => {
+  const filteredProducts: ProductWithCategory[] = allProducts.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategories.length === 0 || selectedCategoryNames.includes(product.categoryName);
@@ -102,8 +99,8 @@ const Products = () => {
           <div className="lg:w-3/4">
             {filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map((product, index) => (
-                  <ProductCard key={index} product={product} />
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
