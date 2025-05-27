@@ -3,18 +3,15 @@ import React from 'react';
 import HeroBanner from '@/components/home/HeroBanner';
 import PromoBanner from '@/components/home/PromoBanner';
 import SupportChannels from '@/components/home/SupportChannels';
-import FeaturedProducts from '@/components/home/FeaturedProducts';
 import AboutSection from '@/components/home/AboutSection';
 import TestimonialSection from '@/components/home/TestimonialSection';
 import NewsletterSection from '@/components/home/NewsletterSection';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
-import { p1, products } from '@/data/mockData';
+import { p1 } from '@/data/mockData';
 import ProductCard from '@/components/ui/ProductCard';
 
 const Index = () => {
-  // Get different product groups for various sections
-  const newProducts = products.filter(product => product.isNew).slice(0, 6);
-  const popularProducts = products.slice(0, 6);
+  
   
   return (
     <div>
