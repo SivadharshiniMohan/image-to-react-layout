@@ -12,6 +12,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
+import Services from "./pages/Services";
+import SafetyTips from "./pages/SafetyTips";
+import PaymentInfo from "./pages/PaymentInfo";
 
 const queryClient = new QueryClient();
 
@@ -25,11 +28,12 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<div className="container mx-auto px-4 py-16"><h1 className="text-3xl font-bold">Services</h1><p>Our comprehensive fireworks services page coming soon.</p></div>} />
-            <Route path="/safety-tips" element={<div className="container mx-auto px-4 py-16"><h1 className="text-3xl font-bold">Safety Tips</h1><p>Important safety guidelines for fireworks usage coming soon.</p></div>} />
-            <Route path="/payment-info" element={<div className="container mx-auto px-4 py-16"><h1 className="text-3xl font-bold">Payment Information</h1><p>Payment methods and policies coming soon.</p></div>} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/safety-tips" element={<SafetyTips />} />
+            <Route path="/payment-info" element={<PaymentInfo />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:categorySlug" element={<Products />} />
+            <Route path="/product/:name" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -60,6 +59,7 @@ const Cart = () => {
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cartItems') || '[]');
     setCartItems(items);
+    updateCartCount();
   }, []);
 
   useEffect(() => {
@@ -67,7 +67,8 @@ const Cart = () => {
   }, [watchCountryCode]);
 
   const updateCartCount = () => {
-    const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    const items = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const totalCount = items.reduce((sum: number, item: any) => sum + item.quantity, 0);
     // Update the header cart count
     const event = new CustomEvent('cartUpdate', { detail: totalCount });
     window.dispatchEvent(event);
@@ -166,6 +167,7 @@ const Cart = () => {
                   <div>
                     <h3 className="font-medium">{item.name}</h3>
                     <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                    <p className="text-sm text-gray-600">Unit Price: ₹{(item.offerPrice || item.price).toFixed(2)}</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -175,7 +177,7 @@ const Cart = () => {
             ))}
             <div className="mt-4 pt-4 border-t">
               <div className="flex justify-between items-center text-xl font-bold">
-                <span>Total: ₹{getTotalPrice().toFixed(2)}</span>
+                <span>Total Amount: ₹{getTotalPrice().toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -220,6 +222,7 @@ const Cart = () => {
                   <div>
                     <h3 className="font-medium">{item.name}</h3>
                     <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                    <p className="text-sm text-gray-600">Unit Price: ₹{(item.offerPrice || item.price).toFixed(2)}</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -229,7 +232,7 @@ const Cart = () => {
             ))}
             <div className="mt-4 pt-4 border-t">
               <div className="flex justify-between items-center text-xl font-bold">
-                <span>Total: ₹{getTotalPrice().toFixed(2)}</span>
+                <span>Total Amount: ₹{getTotalPrice().toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -270,7 +273,10 @@ const Cart = () => {
                   <div className="flex-grow">
                     <h3 className="font-medium">{item.name}</h3>
                     <p className="text-primary font-semibold">
-                      ₹{(item.offerPrice || item.price).toFixed(2)}
+                      ₹{(item.offerPrice || item.price).toFixed(2)} each
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      Subtotal: ₹{((item.offerPrice || item.price) * item.quantity).toFixed(2)}
                     </p>
                   </div>
                   
@@ -306,8 +312,11 @@ const Cart = () => {
               
               <div className="mt-6 pt-4 border-t">
                 <div className="flex justify-between items-center text-xl font-bold">
-                  <span>Total: ₹{getTotalPrice().toFixed(2)}</span>
+                  <span>Total Amount: ₹{getTotalPrice().toFixed(2)}</span>
                 </div>
+                <p className="text-sm text-gray-600 mt-2">
+                  {cartItems.reduce((sum, item) => sum + item.quantity, 0)} items in cart
+                </p>
               </div>
             </div>
 
