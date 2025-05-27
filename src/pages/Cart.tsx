@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -41,6 +42,7 @@ const Cart = () => {
   const [showOrderSuccess, setShowOrderSuccess] = useState(false);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails | null>(null);
   const [selectedCountryCode, setSelectedCountryCode] = useState('+91');
+  const [orderTotal, setOrderTotal] = useState(0);
   
   const form = useForm<CustomerDetails>({
     defaultValues: {
@@ -104,6 +106,7 @@ const Cart = () => {
 
   const onSubmit = (data: CustomerDetails) => {
     setCustomerDetails(data);
+    setOrderTotal(getTotalPrice());
     setShowOrderPreview(true);
   };
 
@@ -176,8 +179,13 @@ const Cart = () => {
               </div>
             ))}
             <div className="mt-4 pt-4 border-t">
-              <div className="flex justify-between items-center text-xl font-bold">
-                <span>Total Amount: ₹{getTotalPrice().toFixed(2)}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-semibold">Total Items:</span>
+                <span className="text-lg">{cartItems.reduce((sum, item) => sum + item.quantity, 0)}</span>
+              </div>
+              <div className="flex justify-between items-center text-xl font-bold mt-2">
+                <span>Total Amount:</span>
+                <span className="text-primary">₹{orderTotal.toFixed(2)}</span>
               </div>
             </div>
           </div>
