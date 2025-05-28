@@ -12,14 +12,14 @@ const About = () => {
         {/* Hero section */}
         <div className="mb-16 relative h-96 rounded-lg overflow-hidden">
           <img 
-            src="/placeholder.svg" 
-            alt="K2G Crackers Factory" 
+            src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800&h=500&fit=crop" 
+            alt="K2G Crackers Sivakasi Fireworks Factory" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <div className="text-white text-center px-4">
               <h2 className="text-3xl font-bold mb-4">Our Story Since 1995</h2>
-              <p className="text-xl max-w-2xl">Crafting premium crackers and biscuits with passion and tradition</p>
+              <p className="text-xl max-w-2xl">Crafting premium fireworks and crackers with passion and tradition in Sivakasi</p>
             </div>
           </div>
         </div>
@@ -29,17 +29,17 @@ const About = () => {
           <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-gray-700 mb-4">
-              K2G Crackers was founded in 1995 by the Johnson family in their small hometown bakery. 
-              What started as a local favorite quickly grew into a nationally recognized brand known for quality and taste.
+              K2G Crackers was founded in 1995 in Sivakasi, the fireworks capital of India. 
+              What started as a small family business quickly grew into a nationally recognized brand known for quality and safety in fireworks manufacturing.
             </p>
             <p className="text-gray-700 mb-4">
-              For over 25 years, we've maintained our commitment to using only premium ingredients and traditional 
-              recipes while continuously innovating to meet our customers' evolving preferences.
+              For over 25 years, we've maintained our commitment to using only premium materials and traditional 
+              Sivakasi craftsmanship while continuously innovating to meet our customers' evolving celebration needs.
             </p>
             <p className="text-gray-700">
-              Today, K2G Crackers offers a wide range of crackers, biscuits, cookies, and wafers that are enjoyed 
-              by families across the country. Despite our growth, we remain true to our roots and the values 
-              that have guided us from the beginning: quality, integrity, and customer satisfaction.
+              Today, K2G Crackers offers a wide range of sparklers, fancy crackers, ground chakkar, aerial shots, and combo packages 
+              that light up festivals and celebrations across the country. Despite our growth, we remain true to our roots and the values 
+              that have guided us from the beginning: quality, safety, and customer satisfaction.
             </p>
           </div>
         </div>
@@ -56,7 +56,7 @@ const About = () => {
               </div>
               <h3 className="text-xl font-bold mb-2">Quality</h3>
               <p className="text-gray-700">
-                We use only the finest ingredients and maintain rigorous quality control standards.
+                We use only the finest materials and maintain rigorous quality control standards for safe fireworks.
               </p>
             </div>
             
@@ -69,9 +69,9 @@ const About = () => {
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-2">Family</h3>
+              <h3 className="text-xl font-bold mb-2">Safety</h3>
               <p className="text-gray-700">
-                Family-owned and operated, we bring family values to every aspect of our business.
+                Family-owned and operated, we prioritize safety in manufacturing and provide guidelines for safe celebrations.
               </p>
             </div>
             
@@ -85,7 +85,7 @@ const About = () => {
               </div>
               <h3 className="text-xl font-bold mb-2">Innovation</h3>
               <p className="text-gray-700">
-                We continually innovate while honoring traditional baking techniques.
+                We continually innovate while honoring traditional Sivakasi fireworks manufacturing techniques.
               </p>
             </div>
           </div>
@@ -93,10 +93,10 @@ const About = () => {
         
         {/* Call to action */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold mb-6">Try Our Products Today</h2>
+          <h2 className="text-3xl font-bold mb-6">Try Our Fireworks Today</h2>
           <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
-            Experience the K2G difference with our premium crackers, biscuits, and more. 
-            We're confident you'll taste the quality in every bite.
+            Experience the K2G difference with our premium crackers, sparklers, and fireworks. 
+            We're confident you'll see the quality and safety in every celebration.
           </p>
           <Button asChild size="lg">
             <Link to="/products">Browse Our Products</Link>

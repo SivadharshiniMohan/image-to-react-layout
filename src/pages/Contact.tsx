@@ -54,9 +54,10 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Address</h3>
                     <p className="text-gray-700">
-                      123 Cracker Street<br />
-                      Biscuit City, 12345<br />
-                      United States
+                      K2G Crackers<br />
+                      123 Fireworks Street<br />
+                      Sivakasi, Tamil Nadu 626123<br />
+                      India
                     </p>
                   </div>
                 </div>
@@ -66,7 +67,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
                     <p className="text-gray-700">
-                      (123) 456-7890
+                      +91 98765 43210<br />
+                      +91 04562 123456
                     </p>
                   </div>
                 </div>
@@ -76,6 +78,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
                     <p className="text-gray-700">
+                      orders@k2gcrackers.com<br />
                       info@k2gcrackers.com
                     </p>
                   </div>
@@ -86,9 +89,9 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Business Hours</h3>
                     <p className="text-gray-700">
-                      Monday - Friday: 9am - 5pm<br />
-                      Saturday: 10am - 2pm<br />
-                      Sunday: Closed
+                      Monday - Saturday: 9am - 7pm<br />
+                      Sunday: 10am - 5pm<br />
+                      Festival Season: Extended Hours
                     </p>
                   </div>
                 </div>
@@ -151,6 +154,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mt-1"
+                    placeholder="Tell us about your fireworks requirements, bulk orders, or any questions you have..."
                   ></textarea>
                 </div>
                 
@@ -162,9 +166,9 @@ const Contact = () => {
         
         {/* Map */}
         <div className="rounded-lg overflow-hidden h-80 shadow-md">
-          {/* In a real application, this would be a real map component */}
+          {/* In a real application, this would be a real map component showing Sivakasi location */}
           <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-            <p className="text-gray-500">Interactive Map Would Be Displayed Here</p>
+            <p className="text-gray-500">Interactive Map of Sivakasi, Tamil Nadu Would Be Displayed Here</p>
           </div>
         </div>
       </div>
