@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -36,6 +35,8 @@ const countryCodes = [
   { code: '+61', country: 'Australia', cities: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Newcastle', 'Wollongong', 'Geelong'] }
 ];
 
+const MINIMUM_ORDER_AMOUNT = 3000;
+
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [showOrderPreview, setShowOrderPreview] = useState(false);
@@ -43,6 +44,7 @@ const Cart = () => {
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails | null>(null);
   const [selectedCountryCode, setSelectedCountryCode] = useState('+91');
   const [orderTotal, setOrderTotal] = useState(0);
+  const [totalItemsCount, setTotalItemsCount] = useState(0);
   
   const form = useForm<CustomerDetails>({
     defaultValues: {
@@ -104,9 +106,27 @@ const Cart = () => {
     }, 0);
   };
 
+  const getTotalItemsCount = () => {
+    return cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  };
+
   const onSubmit = (data: CustomerDetails) => {
+    const total = getTotalPrice();
+    const itemsCount = getTotalItemsCount();
+    
+    if (total < MINIMUM_ORDER_AMOUNT) {
+      toast({
+        title: "Minimum Order Required",
+        description: `Minimum order amount is ₹${MINIMUM_ORDER_AMOUNT}. Your current total is ₹${total.toFixed(2)}`,
+        variant: "destructive",
+        duration: 5000,
+      });
+      return;
+    }
+
     setCustomerDetails(data);
-    setOrderTotal(getTotalPrice());
+    setOrderTotal(total);
+    setTotalItemsCount(itemsCount);
     setShowOrderPreview(true);
   };
 
@@ -181,7 +201,7 @@ const Cart = () => {
             <div className="mt-4 pt-4 border-t">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold">Total Items:</span>
-                <span className="text-lg">{cartItems.reduce((sum, item) => sum + item.quantity, 0)}</span>
+                <span className="text-lg">{totalItemsCount}</span>
               </div>
               <div className="flex justify-between items-center text-xl font-bold mt-2">
                 <span>Total Amount:</span>
@@ -239,8 +259,13 @@ const Cart = () => {
               </div>
             ))}
             <div className="mt-4 pt-4 border-t">
-              <div className="flex justify-between items-center text-xl font-bold">
-                <span>Total Amount: ₹{getTotalPrice().toFixed(2)}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-semibold">Total Items:</span>
+                <span className="text-lg">{totalItemsCount}</span>
+              </div>
+              <div className="flex justify-between items-center text-xl font-bold mt-2">
+                <span>Total Amount:</span>
+                <span className="text-primary">₹{getTotalPrice().toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -258,6 +283,9 @@ const Cart = () => {
     );
   }
 
+  const currentTotal = getTotalPrice();
+  const isMinimumReached = currentTotal >= MINIMUM_ORDER_AMOUNT;
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Shopping Cart</h1>
@@ -269,6 +297,16 @@ const Cart = () => {
         </div>
       ) : (
         <div className="max-w-6xl mx-auto">
+          {/* Minimum Order Warning */}
+          {!isMinimumReached && (
+            <div className="bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded mb-6">
+              <p className="font-semibold">
+                Minimum order amount is ₹{MINIMUM_ORDER_AMOUNT}. 
+                You need ₹{(MINIMUM_ORDER_AMOUNT - currentTotal).toFixed(2)} more to place your order.
+              </p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Order Summary */}
             <div className="bg-white rounded-lg shadow-md p-6">
@@ -320,10 +358,10 @@ const Cart = () => {
               
               <div className="mt-6 pt-4 border-t">
                 <div className="flex justify-between items-center text-xl font-bold">
-                  <span>Total Amount: ₹{getTotalPrice().toFixed(2)}</span>
+                  <span>Total Amount: ₹{currentTotal.toFixed(2)}</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">
-                  {cartItems.reduce((sum, item) => sum + item.quantity, 0)} items in cart
+                  {getTotalItemsCount()} items in cart
                 </p>
               </div>
             </div>
@@ -500,8 +538,12 @@ const Cart = () => {
                     )}
                   />
 
-                  <Button type="submit" className="w-full bg-primary hover:bg-red-700">
-                    Proceed to Order Preview
+                  <Button 
+                    type="submit" 
+                    className={`w-full ${isMinimumReached ? 'bg-primary hover:bg-red-700' : 'bg-gray-400 cursor-not-allowed'}`}
+                    disabled={!isMinimumReached}
+                  >
+                    {isMinimumReached ? 'Proceed to Order Preview' : `Add ₹${(MINIMUM_ORDER_AMOUNT - currentTotal).toFixed(2)} more to proceed`}
                   </Button>
                 </form>
               </Form>

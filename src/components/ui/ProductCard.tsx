@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Product } from '@/data/mockData';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
+import { Package } from 'lucide-react';
 
 interface ProductCardProps {
   product: any;
@@ -65,17 +65,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }
   };
 
- 
   return (
     <div 
       className="bg-white border border-gray-200 rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-[420px] cursor-pointer"
     >
       <div className="relative">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-52 object-contain p-2"
-        />
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-52 object-contain p-2"
+          />
+        ) : (
+          <div className="w-full h-52 flex items-center justify-center bg-gray-100">
+            <Package className="w-20 h-20 text-gray-400" />
+          </div>
+        )}
         {product.isNew && (
           <Badge className="absolute top-2 left-2 bg-green-600">New</Badge>
         )}
@@ -83,7 +88,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       
       <div className="p-4 flex-grow flex flex-col">
         <h3 className="font-semibold text-center mb-2 line-clamp-2 text-sm">{product.name}</h3>
-        {/* <p className="text-gray-600 text-xs mb-3 text-center line-clamp-2">{product.description}</p> */}
         
         <div className="mt-auto flex flex-col items-center justify-center gap-3">
           <div className="text-center">

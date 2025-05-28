@@ -1,9 +1,15 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PromoBanner = () => {
+  const navigate = useNavigate();
+
+  const handleShopNowClick = () => {
+    navigate('/products');
+  };
+
   return (
     <section className="py-8 bg-gradient-to-r from-pink-50 to-orange-50">
       <div className="container mx-auto px-4">
@@ -23,8 +29,12 @@ const PromoBanner = () => {
             </div>
           </div>
           
-          <Button asChild size="lg" className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-8 py-3 rounded-full text-lg font-bold">
-            <Link to="/products">ORDER NOW →</Link>
+          <Button 
+            onClick={handleShopNowClick}
+            size="lg" 
+            className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-8 py-3 rounded-full text-lg font-bold"
+          >
+            ORDER NOW →
           </Button>
         </div>
       </div>
