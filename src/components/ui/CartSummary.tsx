@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Package, DollarSign } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { ShoppingCart, Package, IndianRupee } from 'lucide-react';
 
 const CartSummary = () => {
   const [cartSummary, setCartSummary] = useState({
@@ -43,31 +42,33 @@ const CartSummary = () => {
   if (cartSummary.totalItems === 0) return null;
 
   return (
-    <Card className="bg-primary text-white shadow-lg max-w-md">
-      <CardContent className="p-4">
-        <h3 className="font-semibold text-lg mb-3 flex items-center gap-2 justify-center">
-          <ShoppingCart className="w-5 h-5" />
-          Cart Summary
-        </h3>
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div className="flex flex-col items-center gap-1">
-            <Package className="w-4 h-4" />
-            <span className="text-xs">Items</span>
-            <span className="font-bold">{cartSummary.totalItems}</span>
+    <div className="bg-red-600 text-white py-4">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="flex items-center justify-center gap-2">
+            <ShoppingCart className="w-5 h-5" />
+            <div className="text-center">
+              <div className="text-sm opacity-90">Total Items</div>
+              <div className="text-2xl font-bold">{cartSummary.totalItems}</div>
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-1">
-            <ShoppingCart className="w-4 h-4" />
-            <span className="text-xs">Quantity</span>
-            <span className="font-bold">{cartSummary.totalQuantity}</span>
+          <div className="flex items-center justify-center gap-2">
+            <Package className="w-5 h-5" />
+            <div className="text-center">
+              <div className="text-sm opacity-90">Quantity</div>
+              <div className="text-2xl font-bold">{cartSummary.totalQuantity}</div>
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-1">
-            <DollarSign className="w-4 h-4" />
-            <span className="text-xs">Total</span>
-            <span className="font-bold">₹{cartSummary.totalPrice.toFixed(2)}</span>
+          <div className="flex items-center justify-center gap-2">
+            <IndianRupee className="w-5 h-5" />
+            <div className="text-center">
+              <div className="text-sm opacity-90">Total Price</div>
+              <div className="text-2xl font-bold">₹{cartSummary.totalPrice.toFixed(0)}</div>
+            </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
