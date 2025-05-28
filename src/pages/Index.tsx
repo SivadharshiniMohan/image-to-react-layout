@@ -18,6 +18,17 @@ const Index = () => {
       <PromoBanner />
       <SupportChannels />
       
+      {/* Cart Summary Section */}
+      <section className="py-4 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <div className="relative">
+              <CartSummary />
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Product Categories */}
       {Object.entries(p1).map(([category, items]) => {
         return (
@@ -44,9 +55,6 @@ const Index = () => {
       
       {/* WhatsApp Floating Button */}
       <WhatsAppButton />
-      
-      {/* Cart Summary */}
-      <CartSummary />
     </div>
   );
 };
